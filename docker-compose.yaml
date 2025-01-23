@@ -31,7 +31,18 @@ services:
       - client-db
     networks:
       - clients-net    
-
+    
+  client-frontend:
+    container_name: ${FRONTEND_HOST}
+    build:
+      context: ./clients-app/frontend
+    ports:
+      - "80:80"   
+    depends_on:
+      - client-backend
+    networks:
+      - clients-net  
+      
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4
